@@ -12,7 +12,9 @@ Updated: 24/09/2014
 This plugin creates a widget which can be placed in widget areas. The widget contains an input field for an email address. The widget does not require use of SOAP.
 
 Points of note:
+
 1. This will work with any dotmailer account that has API access and API access to API v2
+
 2. This only provides addition of an email address. It does not currently support first names, last names, or any other details.
 
 
