@@ -11,6 +11,7 @@ $listID = get_option('listID');
 $successful_slug = str_replace('/', '', get_option('slugSuccess'));
 $unsuccessful_slug = str_replace('/', '', get_option('slugUnsuccess'));
 
+
 // Add menu item to the admin panel
 add_action( 'admin_menu', 'dotmailer_menu' );
 
@@ -29,21 +30,44 @@ function dotmailer_options() {
 		<?php settings_fields( 'settings-group' );
 		do_settings_sections( 'settings-group' );
 		?>
-			<label>API key</label><br />
-			<input type="email" name="apiemail" value="<?php echo get_option('apiemail'); ?>"><br /><br />
-			<label>Password</label><br />
-			<input type="password" name="apipassword" value="<?php echo get_option('apipassword'); ?>"><br /><br />
-			<label>Address Book List ID</label><br />
-			<small>This is the ID for the list you want to save contacts too. Find this by navigating to the list in Dotmailer and taking the 7 digit ID from the end of the URL</small><br /><br />
-			<input type="number" name="listID" value="<?php echo get_option('listID') ?>"/><br /><br />
-			<label>Redirect after result</label><br />
-			<small>Include the page slug of where you would like to redirect the user after <strong>successful</strong> submission</small><br />
-			<input type="text" name="slugSuccess" value="<?php echo get_option('slugSuccess'); ?>"/><br /><br />
-			<small>Include the page slug of where you would like to redirect the user after <strong>un</strong>successful submission</small><br />
-			<input type="text" name="slugUnsuccess" value="<?php echo get_option('slugUnsuccess'); ?>"/><br />
-
 			<p><input type="submit" value="Save" class="button-primary" /></p>
+			<fieldset style="border: 1px solid #ccc;padding: 10px;margin-bottom: 25px;">
+			<legend>Account information</legend>
+				<label>API key</label><br />
+				<input type="email" name="apiemail" value="<?php echo get_option('apiemail'); ?>"><br /><br />
+				<label>Password</label><br />
+				<input type="password" name="apipassword" value="<?php echo get_option('apipassword'); ?>"><br /><br />
+				<label>Address Book List ID</label><br />
+				<small>This is the ID for the list you want to save contacts too. Find this by navigating to the list in Dotmailer and taking the 7 digit ID from the end of the URL</small><br /><br />
+				<input type="number" name="listID" value="<?php echo get_option('listID') ?>"/><br /><br />
+			</fieldset>
 
+			<fieldset style="border: 1px solid #ccc;padding: 10px;margin-bottom: 25px;">
+				<legend>Look &amp; Feel</legend>
+				<div style="display:inline-block;width:25%">
+					<label>Submit button</label><br /><br />
+					<small>What text would you like on the submit button?</small><br />
+					<input type="text" name="buttonvalue" placeholder="e.g Sign Up" value="<?php echo get_option('buttonvalue'); ?>"><br /><br />
+					<small>Custom Button Class</small><br />
+					<input type="text" name="buttonclass" placeholder="yourclass" value="<?php echo get_option('buttonclass'); ?>"><br /><br />
+				</div>
+				<div style="display:inline-block;width:25%;vertical-align: top;border-left:1px solid #ccc;margin-left:10px;padding-left:10px">
+					Preview:<br />
+						<small>Save to preview</small><br /><br />
+						<input type="submit" class="btn <?php echo get_option('buttonclass'); ?>" value="<?php echo get_option('buttonvalue'); ?>" />
+				</div>
+			</fieldset>
+
+
+			<fieldset style="border: 1px solid #ccc;padding: 10px;margin-bottom: 25px;">
+			<legend>Successful &amp; Unsuccessful Redirection</legend>
+				<label>Redirect after result</label><br />
+				<small>Include the page slug of where you would like to redirect the user after <strong>successful</strong> submission</small><br />
+				<input type="text" name="slugSuccess" value="<?php echo get_option('slugSuccess'); ?>"/><br /><br />
+				<small>Include the page slug of where you would like to redirect the user after <strong>un</strong>successful submission</small><br />
+				<input type="text" name="slugUnsuccess" value="<?php echo get_option('slugUnsuccess'); ?>"/><br />
+			</fieldset>
+			<p><input type="submit" value="Save" class="button-primary" /></p>
 	</form>
 </div>
 <?php 
@@ -54,6 +78,8 @@ function register_settings() {
 	    register_setting('settings-group','apiemail');
 	    register_setting('settings-group','apipassword');
 	    register_setting('settings-group','listID');
+	    register_setting('settings-group','buttonvalue');
+	    register_setting('settings-group','buttonclass');
 	    register_setting('settings-group','slugUnsuccess');
 	    register_setting('settings-group','slugSuccess');
 	}
@@ -68,6 +94,8 @@ $apiemail = filter_var(get_option('apiemail'), FILTER_SANITIZE_EMAIL);
 $apipassword = get_option('apipassword');
 $successful_slug = str_replace('/', '', get_option('slugSuccess'));
 $unsuccessful_slug = str_replace('/', '', get_option('slugUnsuccess'));
+$buttonVal = get_option('buttonvalue');
+$buttonClass = get_option('buttonclass');
 
 
 
@@ -121,7 +149,9 @@ class wp_dotmailer extends WP_Widget {
 		   echo '<form class="newsletter" action="' . site_url() . '/wp-content/plugins/dotmailer/dotmailer-add.php" method="POST">';
 		   echo '<label>Your email:</label>';
 		   echo '<input type="email" placeholder="your@email.com" name="useremail"/>';
-		   echo '<input type="submit" class="btn" value="Sign up" />';
+		   echo '<input type="submit" class="btn button ';
+		   echo get_option('buttonclass') . '" value="';
+		   echo get_option('buttonvalue') . '" />';
 		   echo '</form>';
 		   echo '</div>';
 		   echo $after_widget;
