@@ -75,4 +75,5 @@ Error 5 	Generic for everything else 	This is the code you will see if the error
 === Changelog ===
 
 29/09/2014 V1.1.1 - Added option for custom submit button value and class.
+
 08/10/2014 V1.1.2 - Fixed small issues with typo and hardcoded path.
