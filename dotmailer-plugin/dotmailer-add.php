@@ -69,7 +69,7 @@ $unsuccess_url = site_url() . '/' . $unsuccessful_slug;
 if (isset($status_code)) {
 	if ($status_code == '200'){
 		echo 'status = ' . $status_code;
-		//header('Location:' . $success_url . '?status=200');
+		header('Location:' . $success_url . '?status=200');
 	}
 	else if ($status_code =='400'){
 
