@@ -2,11 +2,11 @@
 
 Contributors: F.Haselden for SomethingBig.co.uk
 
-Version: 1.1.1
+Version: 1.1.2
 
 Date: 12/09/2014
 
-Last Updated: 29/09/2014
+Last Updated: 08/10/2014
 
 
 This plugin creates a widget which can be placed in widget areas. The widget contains an input field for an email address. The widget does not require use of SOAP.
