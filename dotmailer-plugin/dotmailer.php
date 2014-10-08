@@ -146,7 +146,7 @@ class wp_dotmailer extends WP_Widget {
 		   if ( $title ) {
 		      echo $before_title . $title . $after_title;
 		   }
-		   echo '<form class="newsletter" action="' . site_url() . '/wp-content/plugins/dotmailer/dotmailer-add.php" method="POST">';
+		   echo '<form class="newsletter" action="' . site_url() . '/wp-content/plugins/dotmailer-plugin/dotmailer-add.php" method="POST">';
 		   echo '<label>Your email:</label>';
 		   echo '<input type="email" placeholder="your@email.com" name="useremail"/>';
 		   echo '<input type="submit" class="btn button ';
