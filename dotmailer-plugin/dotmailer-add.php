@@ -49,6 +49,7 @@ $xml_string = json_encode($xml);
 
 // Calls the API and adds the data to the address book
 $ch = curl_init();
+curl_setopt ($ch, CURLOPT_CAINFO, "cacert.pem");
 curl_setopt($ch, CURLOPT_URL,$auth_url);
 curl_setopt($ch,CURLOPT_POST, count($xml));
 curl_setopt($ch,CURLOPT_POSTFIELDS, $xml_string);
