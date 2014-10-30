@@ -1,4 +1,4 @@
-#Dotmailer REST Newsletter Sign-up ===
+#Dotmailer REST Newsletter Sign-up
 
 Contributors: F.Haselden for SomethingBig.co.uk
 
@@ -10,6 +10,8 @@ Last Updated: 30/10/2014
 
 
 ##This plugin creates a widget which can be placed in widget areas. The widget contains an input field for an email address. The widget does not require use of SOAP.
+
+![Alt text](http://i.imgur.com/NRutaOm.png)
 
 ###Points of note:
 
