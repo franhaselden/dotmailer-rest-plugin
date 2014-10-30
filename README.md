@@ -1,4 +1,4 @@
-=== Dotmailer REST Newsletter Sign-up ===
+#Dotmailer REST Newsletter Sign-up ===
 
 Contributors: F.Haselden for SomethingBig.co.uk
 
@@ -6,30 +6,32 @@ Version: 1.2
 
 Date: 12/09/2014
 
-Last Updated: 13/10/2014
+Last Updated: 30/10/2014
 
 
-This plugin creates a widget which can be placed in widget areas. The widget contains an input field for an email address. The widget does not require use of SOAP.
+##This plugin creates a widget which can be placed in widget areas. The widget contains an input field for an email address. The widget does not require use of SOAP.
 
-Points of note:
+###Points of note:
 
 1. This will work with any dotmailer account that has API access and API access to API v2
 
 2. This only provides addition of an email address. It does not currently support first names, last names, or any other details.
 
 
-=== Set up ===
+###Set up
 
-1. Install and activate plugin
-2. On Dotmailer, set up a new API user and make note of the API key (an email) and pword
-3. On Dotmailer, make note of the ID of the address book you wish to add to (usually last 7 digits of the address book URL)
-4. In Wordpress, navigate to Settings > Dotmailer Plugin and input the API key, password and Address Book ID.
-5. In Wordpress, create a new page with a “success” message. This is where your users will go once their email has been successfully added
-6. Repeat 5. for an “unsuccessful” page
-7. Input slugs for both pages on the Dotmailer API Information page
+1. Download the zip and grab the "dotmailer-plugin" folder (with four files inside)
+2. Place this folder in your Wordpress plugin folder
+3. Activate plugin from the Wordpress admin page
+4. On Dotmailer, set up a new API user and make note of the API key (an email) and pword
+5. On Dotmailer, make note of the ID of the address book you wish to add to (usually last 7 digits of the address book URL)
+6. In Wordpress, navigate to Settings > Dotmailer Plugin and input the API key, password and Address Book ID.
+7. In Wordpress, create a new page with a “success” message. This is where your users will go once their email has been successfully added
+8. Repeat 5. for an “unsuccessful” page
+9. Input slugs for both pages on the Dotmailer API Information page
 
 
-=== Widget ===
+###Widget
 
 1. Go to Appearance > Widgets
 2. Drag the Dotmailer widget into the relevant widget area
@@ -37,14 +39,18 @@ Points of note:
 4. When the user is successful they will be forwarded to the previously created success page
 
 
-=== Success Page Advice ===
+###Styling the widget
+
+V 1.2 added options for styling your widget button. Not a lot, but just enough. You can now input the text you wish to have on your signup button. You can also add a class of your choice so that you can style it to match other areas of your CSS. E.g button, or orange-button, or btn - whatever your site's standard button class is. 
+
+###Success Page Advice
 
 There are two ways of going about the success and unsuccessful pages. The simple way is to have two different pages, with some generic details about what has happened. The user will be sent to either one depending on the result of their submission to the address book. All you need to do for this is use the plugin settings to choose the slug (end of the URL) for your pages.
 
 The more complicated (but better) way is to input the same slug for the page into both option boxes and instead use PHP to deliver a useful message. To do this, create one page and input the slug into the plugin settings. Then refer to the file example-success-page.php. The plugin already has the capability to pass an error code along with the redirection at the end of the script, so you can harness these error codes and give your user some useful information to carry on with. All you need to do is place this example code in your success/unsuccessful page and change the text to be more relevant to your company.
 
 
-=== Error codes ===
+###Error codes
 
 For your reference, below are the error codes that are applied in the plugin. Also the error codes from dot mailer, and the description of what they mean.
 
@@ -60,7 +66,7 @@ Error 5 	Generic for everything else 	This is the code you will see if the error
 
 
 
-=== Limitations ===
+###Limitations
 
 1. There are three responses messages that can be received from Dotmailer. 
 	• 200 = this response indicates successful addition to the mailing list. A 200 response will forward to the “successful” slug provided
@@ -72,10 +78,12 @@ Error 5 	Generic for everything else 	This is the code you will see if the error
 5. 
 
 
-=== Changelog ===
+####Changelog
 
 29/09/2014 V1.1.1 - Added option for custom submit button value and class.
 
 08/10/2014 V1.1.2 - Fixed small issues with typo and hardcoded path.
 
 13/10/2014 V1.2 - Added SSL support - new CA certs.
+
+30/10/2014 V1.2 - Moved the CA cert to the correct folder
