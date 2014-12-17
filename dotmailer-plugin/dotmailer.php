@@ -45,7 +45,13 @@ function dotmailer_options() {
 			<fieldset style="border: 1px solid #ccc;padding: 10px;margin-bottom: 25px;">
 				<legend>Look &amp; Feel</legend>
 				<div style="display:inline-block;width:25%">
-					<label>Submit button</label><br /><br />
+					<label>Info text</label><br />
+					<small>This is the instructional text that is shown to the user</small>
+					<input type="text" name="formlabelvalue" placeholder="e.g Add your email to..." value="<?php echo get_option('formlabelvalue'); ?>"><br /><br />
+					<label>Placeholder text</label><br />
+					<small>This is the text that shows inside the input box</small>
+					<input type="text" name="formplaceholdervalue" placeholder="e.g your@email.com" value="<?php echo get_option('formplaceholdervalue'); ?>"><br /><br />
+					<label>Submit button</label><br />
 					<small>What text would you like on the submit button?</small><br />
 					<input type="text" name="buttonvalue" placeholder="e.g Sign Up" value="<?php echo get_option('buttonvalue'); ?>"><br /><br />
 					<small>Custom Button Class</small><br />
@@ -54,6 +60,8 @@ function dotmailer_options() {
 				<div style="display:inline-block;width:25%;vertical-align: top;border-left:1px solid #ccc;margin-left:10px;padding-left:10px">
 					Preview:<br />
 						<small>Save to preview</small><br /><br />
+						<p><?php echo get_option('formlabelvalue'); ?></p>
+						<input type="text" placeholder="<?php echo get_option('formplaceholdervalue'); ?>"/>
 						<input type="submit" class="btn <?php echo get_option('buttonclass'); ?>" value="<?php echo get_option('buttonvalue'); ?>" />
 				</div>
 			</fieldset>
@@ -78,6 +86,8 @@ function register_settings() {
 	    register_setting('settings-group','apiemail');
 	    register_setting('settings-group','apipassword');
 	    register_setting('settings-group','listID');
+	    register_setting('settings-group','formlabelvalue');
+	    register_setting('settings-group','formplaceholdervalue');
 	    register_setting('settings-group','buttonvalue');
 	    register_setting('settings-group','buttonclass');
 	    register_setting('settings-group','slugUnsuccess');
@@ -147,8 +157,11 @@ class wp_dotmailer extends WP_Widget {
 		      echo $before_title . $title . $after_title;
 		   }
 		   echo '<form class="newsletter" action="' . site_url() . '/wp-content/plugins/dotmailer-plugin/dotmailer-add.php" method="POST">';
-		   echo '<label>Your email:</label>';
-		   echo '<input type="email" placeholder="your@email.com" name="useremail"/>';
+		   $helper_text = get_option('formlabelvalue');
+		   if($helper_text != ""){
+		   	echo '<p>'.get_option('formlabelvalue').'</p>';
+		   }
+		   echo '<input type="email" placeholder="'.get_option('formplaceholdervalue').'" name="useremail"/>';
 		   echo '<input type="submit" class="btn button ';
 		   echo get_option('buttonclass') . '" value="';
 		   echo get_option('buttonvalue') . '" />';
